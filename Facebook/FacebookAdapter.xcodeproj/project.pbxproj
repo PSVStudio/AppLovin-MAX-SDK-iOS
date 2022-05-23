@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9287171528379830005DE12A /* XC-FacebookAdapter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9287171628379830005DE12A /* Build configuration list for PBXAggregateTarget "XC-FacebookAdapter" */;
+			buildPhases = (
+				9287171928379836005DE12A /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "XC-FacebookAdapter";
+			productName = "XC-FacebookAdapter";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6A561CDE219BB5A600E3749A /* ALFacebookMediationAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A561CD2219BB57900E3749A /* ALFacebookMediationAdapter.m */; };
 		6A561CE0219BB5A600E3749A /* AppLovinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D31B64D219BA4E600875D92 /* AppLovinSDK.framework */; };
@@ -45,6 +59,7 @@
 		6A561CE5219BB5A600E3749A /* libFacebookAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFacebookAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5A632C21C0872300B755D7 /* AppLovinMediationFacebookAdapter.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppLovinMediationFacebookAdapter.podspec; sourceTree = "<group>"; };
 		6A5A632D21C0872300B755D7 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		92871713283790F9005DE12A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +119,7 @@
 			children = (
 				6A5A632C21C0872300B755D7 /* AppLovinMediationFacebookAdapter.podspec */,
 				6A5A632D21C0872300B755D7 /* CHANGELOG.md */,
+				92871713283790F9005DE12A /* Config.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -127,7 +143,6 @@
 				6A561CDD219BB5A600E3749A /* Sources */,
 				6A561CDF219BB5A600E3749A /* Frameworks */,
 				6A561CE1219BB5A600E3749A /* Copy Files */,
-				1D9BCCB6228B837500ADCC07 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -150,6 +165,10 @@
 					6A561CDC219BB5A600E3749A = {
 						ProvisioningStyle = Manual;
 					};
+					9287171528379830005DE12A = {
+						CreatedOnToolsVersion = 13.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1D97FB801FBCF38B00D6C309 /* Build configuration list for PBXProject "FacebookAdapter" */;
@@ -166,12 +185,13 @@
 			projectRoot = "";
 			targets = (
 				6A561CDC219BB5A600E3749A /* FacebookAdapter */,
+				9287171528379830005DE12A /* XC-FacebookAdapter */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1D9BCCB6228B837500ADCC07 /* ShellScript */ = {
+		9287171928379836005DE12A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -186,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "A=\"https://rt.applovin.com/4.0/pix?platform=ios&sdk_version=6.6.1&compass_id=38fdb8c3-80a6-41ca-9218-0f32a55d325a&sub_event=applovin_ios_adapter_facebook_$(whoami)&idfa=CEE5007F-B8F4-41EB-A39B-637981B0D65F&event=postinstall&sdk_key=ae3tURkRp2y33XqH0eLerIiUgBEhZCu9sy1KNlnAoiEsE37FiSuXlb0QoF7LR_UIxVcJFNU15itKn_ZTSS_C20&package_name=com.applovin.enterprise.apps.demoapp&app_version=10000\"\ncurl $A\n";
+			shellScript = "/bin/sh ${PROJECT_DIR}/../../BuildScripts/BuildAdapter.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -321,13 +341,14 @@
 		};
 		6A561CE3219BB5A600E3749A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92871713283790F9005DE12A /* Config.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
+				FRAMEWORK_SEARCH_PATHS = "../../Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -335,7 +356,6 @@
 				OTHER_CFLAGS = "-fembed-bitcode-marker";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -343,13 +363,14 @@
 		};
 		6A561CE4219BB5A600E3749A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92871713283790F9005DE12A /* Config.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
+				FRAMEWORK_SEARCH_PATHS = "../../Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -357,9 +378,26 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9287171728379830005DE12A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CG78EM8VXT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9287171828379830005DE12A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CG78EM8VXT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -380,6 +418,15 @@
 			buildConfigurations = (
 				6A561CE3219BB5A600E3749A /* Debug */,
 				6A561CE4219BB5A600E3749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9287171628379830005DE12A /* Build configuration list for PBXAggregateTarget "XC-FacebookAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9287171728379830005DE12A /* Debug */,
+				9287171828379830005DE12A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
