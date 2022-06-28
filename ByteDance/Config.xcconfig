@@ -1,0 +1,15 @@
+//
+//  Config.xcconfig
+//  FacebookAdapter
+//
+//  Created by Денис on 20.05.2022.
+//  Copyright © 2022 AppLovin. All rights reserved.
+//
+
+
+FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Pods/**"
+ONLY_ACTIVE_ARCH = NO
+STRIP_INSTALLED_PRODUCT = YES
+DEAD_CODE_STRIPPING = YES
+BUILD_LIBRARY_FOR_DISTRIBUTION = YES
+SUPPORTED_PLATFORMS = iphoneos iphonesimulator

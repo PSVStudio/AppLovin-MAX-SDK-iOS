@@ -45,6 +45,7 @@
 		1DECDDD821D1CFA600385280 /* ALByteDanceMediationAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALByteDanceMediationAdapter.m; sourceTree = "<group>"; };
 		6A5A632A21C086E400B755D7 /* AppLovinMediationByteDanceAdapter.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppLovinMediationByteDanceAdapter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6A5A632B21C086E500B755D7 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		9D62EAB72860913C00414A56 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +114,7 @@
 			children = (
 				6A5A632A21C086E400B755D7 /* AppLovinMediationByteDanceAdapter.podspec */,
 				6A5A632B21C086E500B755D7 /* CHANGELOG.md */,
+				9D62EAB72860913C00414A56 /* Config.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -219,7 +221,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -235,7 +236,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -280,7 +280,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -290,7 +289,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -301,11 +299,11 @@
 		};
 		1D97FB8F1FBCF38B00D6C309 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D62EAB72860913C00414A56 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -321,11 +319,11 @@
 		};
 		1D97FB901FBCF38B00D6C309 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D62EAB72860913C00414A56 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
