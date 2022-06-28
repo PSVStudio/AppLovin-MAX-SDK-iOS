@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.0.4
+* Add support for returning the main image asset in `MANativeAd` for native ads.
+
+## 2.0.0.3
+* Add support for IAB's TCFv2 GDPR consent string. Note that you must be on the AppLovin MAX SDK v11.4.2+ and use a TCFv2-compliant framework which stores the consent string in User Defaults via the `IABTCF_TCString` key to use this feature. Yahoo will still be filtered out of the waterfall in GDPR regions if the string is not available or one of the criteria is not met.
+
+## 2.0.0.2
+* Add support for clickability of video, image and icon components.
+* Do not explicitly destroy Yahoo native ads, as it will clear previously-registered `UILabel`s and `UIButton`s.
+
+## 2.0.0.1
+* Fix native ads not tracking impressions properly.
+
 ## 2.0.0.0
 * Certified with Yahoo Mobile SDK 1.0.0.
 * Remove arm64 simulator slice which the Yahoo-Ads SDK does not support.

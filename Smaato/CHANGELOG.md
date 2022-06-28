@@ -1,5 +1,12 @@
 # Changelog
 
+## 21.7.6.1
+* Add support for returning the main image asset in `MANativeAd` for native ads.
+
+## 21.7.6.0
+* Certified with Smaato SDK 21.7.6.
+* Distribute adapter as an XCFramework.
+
 ## 21.7.5.1
 * Update ad display failed error code.
 

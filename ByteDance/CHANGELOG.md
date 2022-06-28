@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.5.2.4.1
+* Add support for returning the main image asset in `MANativeAd` for native ads.
+
+## 4.5.2.4.0
+* Certified with ByteDance SDK 4.5.2.4.
+
+## 4.5.2.3.0
+* Certified with ByteDance SDK 4.5.2.3.
+
+## 4.5.1.3.0
+* Certified with ByteDance SDK 4.5.1.3.
+* Distribute adapter as an XCFramework.
+
 ## 4.3.1.9.1
 * Update ad display failed error code.
 

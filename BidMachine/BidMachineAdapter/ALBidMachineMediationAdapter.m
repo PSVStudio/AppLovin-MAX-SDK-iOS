@@ -9,7 +9,7 @@
 #import "ALBidMachineMediationAdapter.h"
 #import <BidMachine/BidMachine.h>
 
-#define ADAPTER_VERSION @"1.9.2.0.0"
+#define ADAPTER_VERSION @"1.9.4.1.1"
 
 @interface ALBidMachineInterstitialDelegate : NSObject<BDMInterstitialDelegate>
 @property (nonatomic,   weak) ALBidMachineMediationAdapter *parentAdapter;
@@ -87,7 +87,7 @@ static MAAdapterInitializationStatus ALBidMachineSDKInitializationStatus = NSInt
     {
         ALBidMachineSDKInitializationStatus = MAAdapterInitializationStatusInitializing;
         
-        NSString *sourceId = [parameters.customParameters al_stringForKey: @"source_id"];
+        NSString *sourceId = [parameters.serverParameters al_stringForKey: @"source_id"];
         [self log: @"Initializing BidMachine SDK with source id: %@", sourceId];
 
         BDMSdkConfiguration *config = [[BDMSdkConfiguration alloc] init];
@@ -177,7 +177,7 @@ static MAAdapterInitializationStatus ALBidMachineSDKInitializationStatus = NSInt
     if ( ![self.interstitialAd canShow] )
     {
         [self log: @"Unable to show interstitial - ad not ready"];
-        [delegate didFailToDisplayInterstitialAdWithError: MAAdapterError.adNotReady];
+        [delegate didFailToDisplayInterstitialAdWithError: [MAAdapterError errorWithCode: -4205 errorString: @"Ad Display Failed"]];
         
         return;
     }
@@ -303,10 +303,13 @@ static MAAdapterInitializationStatus ALBidMachineSDKInitializationStatus = NSInt
             break;
     }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return [MAAdapterError errorWithCode: adapterError.code
                              errorString: adapterError.message
                   thirdPartySdkErrorCode: bidmachineErrorCode
                thirdPartySdkErrorMessage: bidmachineError.localizedDescription];
+#pragma clang diagnostic pop
 }
 
 - (BDMBannerAdSize)sizeFromAdFormat:(MAAdFormat *)adFormat
@@ -672,11 +675,13 @@ static MAAdapterInitializationStatus ALBidMachineSDKInitializationStatus = NSInt
     }
     
     __block UIImageView *mainImageView = nil;
+    __block MANativeAdImage *mainImage = nil;
     if ( nativeAd.mainImageUrl && [nativeAd.mainImageUrl al_isValidURL] )
     {
         [self.parentAdapter log: @"Fetching native ad main image: %@", nativeAd.mainImageUrl];
         [self.parentAdapter loadImageForURLString: nativeAd.mainImageUrl group: group successHandler:^(UIImage *image) {
             mainImageView = [[UIImageView alloc] initWithImage: image];
+            mainImage = [[MANativeAdImage alloc] initWithImage: image];
         }];
     }
 
@@ -692,6 +697,10 @@ static MAAdapterInitializationStatus ALBidMachineSDKInitializationStatus = NSInt
             builder.body = nativeAd.body;
             builder.callToAction = nativeAd.CTAText;
             builder.icon = iconImage;
+            if ( ALSdk.versionCode >= 11040299 )
+            {
+                [builder performSelector: @selector(setMainImage:) withObject: mainImage];
+            }
             builder.mediaView = mainImageView;
         }];
         [self.delegate didLoadAdForNativeAd: maxNativeAd withExtraInfo: nil];

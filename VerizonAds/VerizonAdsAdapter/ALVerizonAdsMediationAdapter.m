@@ -10,7 +10,7 @@
 #import <YahooAds/YahooAds.h>
 
 // Major version number is '2' since certifying against the rebranded Yahoo SDK
-#define ADAPTER_VERSION @"2.0.0.0"
+#define ADAPTER_VERSION @"2.0.0.4"
 
 /**
  * Dedicated delegate object for Verizon Ads interstitial ads.
@@ -150,7 +150,6 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
     self.inlineAdView = nil;
     self.inlineAdViewDelegate = nil;
     
-    [self.nativeAd destroy];
     self.nativeAd = nil;
     self.nativeAdDelegate = nil;
     
@@ -319,6 +318,14 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
 
 - (void)updatePrivacyStatesForParameters:(id<MAAdapterParameters>)parameters
 {
+    if ( ALSdk.versionCode >= 11040299 )
+    {
+        if ( parameters.consentString )
+        {
+            [[YASAds sharedInstance] addConsent: [[YASGdprConsent alloc] initWithConsentString: parameters.consentString]];
+        }
+    }
+    
     NSNumber *isAgeRestrictedUser = [self privacySettingForSelector: @selector(isAgeRestrictedUser) fromParameters: parameters];
     if ( isAgeRestrictedUser )
     {
@@ -755,6 +762,7 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
         
         UIView *mediaView;
         CGFloat mediaContentAspectRatio = 0.0f;
+        MANativeAdImage *mainImage = nil;
         id<YASNativeVideoComponent> videoComponent = (id<YASNativeVideoComponent>)[nativeAd component: @"video"];
         id<YASNativeImageComponent> mainImageComponent = (id<YASNativeImageComponent>)[nativeAd component: @"mainImage"];
         
@@ -773,6 +781,9 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
             mediaView = [[UIImageView alloc] init];
             mediaView.contentMode = UIViewContentModeScaleAspectFit;
             [mainImageComponent prepareView: (UIImageView *) mediaView];
+            
+            UIImage *image = ((UIImageView *) mediaView).image;
+            mainImage = [[MANativeAdImage alloc] initWithImage: image];
         }
         
         NSString *templateName = [self.serverParameters al_stringForKey: @"template" defaultValue: @""];
@@ -796,6 +807,10 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
             builder.advertiser = advertiser;
             builder.callToAction = callToAction;
             builder.icon = iconImage;
+            if ( ALSdk.versionCode >= 11040299 )
+            {
+                [builder performSelector: @selector(setMainImage:) withObject: mainImage];
+            }
             builder.mediaView = mediaView;
             
 #pragma clang diagnostic push
@@ -880,6 +895,43 @@ static NSString *const kMAAdImpressionEventId = @"adImpression";
     {
         [self.parentAdapter e: @"Failed to register native ad view for interaction: Native ad is nil."];
         return;
+    }
+    
+    id<YASNativeTextComponent> titleComponent = (id<YASNativeTextComponent>)[self.parentAdapter.nativeAd component: @"title"];
+    id<YASNativeTextComponent> disclaimerComponent = (id<YASNativeTextComponent>)[self.parentAdapter.nativeAd component: @"disclaimer"];
+    id<YASNativeTextComponent> bodyComponent = (id<YASNativeTextComponent>)[self.parentAdapter.nativeAd component: @"body"];
+    id<YASNativeTextComponent> ctaComponent = (id<YASNativeTextComponent>)[self.parentAdapter.nativeAd component: @"callToAction"];
+    id<YASNativeImageComponent> iconComponent = (id<YASNativeImageComponent>)[self.parentAdapter.nativeAd component: @"iconImage"];
+    id<YASNativeImageComponent> imageComponent = (id<YASNativeImageComponent>)[self.parentAdapter.nativeAd component: @"mainImage"];
+    id<YASNativeVideoComponent> videoComponent = (id<YASNativeVideoComponent>)[self.parentAdapter.nativeAd component: @"video"];
+
+    if ( titleComponent && maxNativeAdView.titleLabel )
+    {
+        [titleComponent prepareLabel: maxNativeAdView.titleLabel];
+    }
+    if ( disclaimerComponent && maxNativeAdView.advertiserLabel )
+    {
+        [disclaimerComponent prepareLabel: maxNativeAdView.advertiserLabel];
+    }
+    if ( bodyComponent && maxNativeAdView.bodyLabel )
+    {
+        [bodyComponent prepareLabel: maxNativeAdView.bodyLabel];
+    }
+    if ( ctaComponent && maxNativeAdView.callToActionButton )
+    {
+        [ctaComponent prepareButton: maxNativeAdView.callToActionButton];
+    }
+    if ( iconComponent && maxNativeAdView.iconImageView )
+    {
+        [iconComponent prepareView: maxNativeAdView.iconImageView];
+    }
+    if ( videoComponent && self.mediaView )
+    {
+        [videoComponent prepareView: (YASVideoPlayerView *)self.mediaView];
+    }
+    else if ( imageComponent && self.mediaView )
+    {
+        [imageComponent prepareView: (UIImageView *)self.mediaView];
     }
     
     [self.parentAdapter.nativeAd registerContainerView: maxNativeAdView];
