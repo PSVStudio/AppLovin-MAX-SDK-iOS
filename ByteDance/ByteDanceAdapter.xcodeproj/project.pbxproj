@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9D5AD77C28744614008B82E7 /* XC-PangleAdapter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9D5AD77F28744614008B82E7 /* Build configuration list for PBXAggregateTarget "XC-PangleAdapter" */;
+			buildPhases = (
+				9D5AD7802874461B008B82E7 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "XC-PangleAdapter";
+			productName = "XC-PangleAdapter";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D31B64E219BA4E600875D92 /* AppLovinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D31B64D219BA4E600875D92 /* AppLovinSDK.framework */; };
 		1DECDDD921D1CFA600385280 /* ALByteDanceMediationAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DECDDD821D1CFA600385280 /* ALByteDanceMediationAdapter.m */; };
@@ -152,6 +166,10 @@
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Manual;
 					};
+					9D5AD77C28744614008B82E7 = {
+						CreatedOnToolsVersion = 13.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1D97FB801FBCF38B00D6C309 /* Build configuration list for PBXProject "ByteDanceAdapter" */;
@@ -168,9 +186,30 @@
 			projectRoot = "";
 			targets = (
 				1D97FB841FBCF38B00D6C309 /* ByteDanceAdapter */,
+				9D5AD77C28744614008B82E7 /* XC-PangleAdapter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9D5AD7802874461B008B82E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ${PROJECT_DIR}/../../BuildScripts/BuildAdapter.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D97FB811FBCF38B00D6C309 /* Sources */ = {
@@ -235,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -288,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -307,7 +346,6 @@
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-fembed-bitcode-marker";
@@ -329,7 +367,6 @@
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fembed-bitcode";
@@ -338,6 +375,24 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9D5AD77D28744614008B82E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D62EAB72860913C00414A56 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9D5AD77E28744614008B82E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D62EAB72860913C00414A56 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -358,6 +413,15 @@
 			buildConfigurations = (
 				1D97FB8F1FBCF38B00D6C309 /* Debug */,
 				1D97FB901FBCF38B00D6C309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D5AD77F28744614008B82E7 /* Build configuration list for PBXAggregateTarget "XC-PangleAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D5AD77D28744614008B82E7 /* Debug */,
+				9D5AD77E28744614008B82E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
