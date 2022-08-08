@@ -544,11 +544,6 @@ static MAAdapterInitializationStatus ALVungleIntializationStatus = NSIntegerMin;
         options[VunglePlayAdOptionKeyUser] = [serverParameters al_stringForKey: @"user_id"];
     }
     
-    if ( [serverParameters al_containsValueForKey: @"ordinal"] )
-    {
-        options[VunglePlayAdOptionKeyOrdinal] = [serverParameters al_numberForKey: @"ordinal"];
-    }
-    
     if ( [serverParameters al_containsValueForKey: @"flex_view_auto_dismiss_seconds"] )
     {
         options[VunglePlayAdOptionKeyFlexViewAutoDismissSeconds] = [serverParameters al_numberForKey: @"flex_view_auto_dismiss_seconds"];

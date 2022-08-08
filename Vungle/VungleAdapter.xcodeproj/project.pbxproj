@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9DA410A728A1022600846A07 /* XC-VungleAdapter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9DA410A828A1022600846A07 /* Build configuration list for PBXAggregateTarget "XC-VungleAdapter" */;
+			buildPhases = (
+				9DA410AB28A1023900846A07 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "XC-VungleAdapter";
+			productName = "XC-VungleAdapter";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6A561CE0219BB5A600E3749A /* AppLovinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D31B64D219BA4E600875D92 /* AppLovinSDK.framework */; };
 		6A9A772A21A4F43A00151D7A /* ALVungleMediationAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9A772821A4F43A00151D7A /* ALVungleMediationAdapter.m */; };
@@ -45,6 +59,7 @@
 		6A5A633B21C0875E00B755D7 /* AppLovinMediationVungleAdapter.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppLovinMediationVungleAdapter.podspec; sourceTree = "<group>"; };
 		6A9A772821A4F43A00151D7A /* ALVungleMediationAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVungleMediationAdapter.m; sourceTree = "<group>"; };
 		6A9A772921A4F43A00151D7A /* ALVungleMediationAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVungleMediationAdapter.h; sourceTree = "<group>"; };
+		9DA410A628A101E200846A07 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +117,7 @@
 		6A5A632921C086CF00B755D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9DA410A628A101E200846A07 /* Config.xcconfig */,
 				6A5A633B21C0875E00B755D7 /* AppLovinMediationVungleAdapter.podspec */,
 				6A5A633A21C0875E00B755D7 /* CHANGELOG.md */,
 			);
@@ -149,6 +165,10 @@
 					6A561CDC219BB5A600E3749A = {
 						ProvisioningStyle = Manual;
 					};
+					9DA410A728A1022600846A07 = {
+						CreatedOnToolsVersion = 13.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1D97FB801FBCF38B00D6C309 /* Build configuration list for PBXProject "VungleAdapter" */;
@@ -165,9 +185,30 @@
 			projectRoot = "";
 			targets = (
 				6A561CDC219BB5A600E3749A /* VungleAdapter */,
+				9DA410A728A1022600846A07 /* XC-VungleAdapter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9DA410AB28A1023900846A07 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ${PROJECT_DIR}/../../BuildScripts/BuildAdapter.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A561CDD219BB5A600E3749A /* Sources */ = {
@@ -300,13 +341,13 @@
 		};
 		6A561CE3219BB5A600E3749A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DA410A628A101E200846A07 /* Config.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -322,13 +363,13 @@
 		};
 		6A561CE4219BB5A600E3749A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DA410A628A101E200846A07 /* Config.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8JXXK4FF5;
 				EXCLUDED_ARCHS = i386;
-				FRAMEWORK_SEARCH_PATHS = "../../iOS-Workspace/Pods/**";
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -339,6 +380,22 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9DA410A928A1022600846A07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9DA410AA28A1022600846A07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -359,6 +416,15 @@
 			buildConfigurations = (
 				6A561CE3219BB5A600E3749A /* Debug */,
 				6A561CE4219BB5A600E3749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DA410A828A1022600846A07 /* Build configuration list for PBXAggregateTarget "XC-VungleAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DA410A928A1022600846A07 /* Debug */,
+				9DA410AA28A1022600846A07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
