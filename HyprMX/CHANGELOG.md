@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.3.0
+* Certified with HyprMX SDK 6.0.3.
+
+## 6.0.1.7
+* Update consent status before collecting signal. 
+
 ## 6.0.1.6
 * Add support to set `hasUserConsent` on initialization.
 * Pass HyprMX error message for ad display errors.

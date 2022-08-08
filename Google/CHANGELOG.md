@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.8.0.1
+* Fix impression tracking for fullscreen ads.
+* Break out listeners into different files.
+
+## 9.8.0.0
+* Certified with Google SDK 9.8.0.
+
 ## 9.7.0.1
 * Add support for DV360 Bidding by updating the requester type (`requester_type_3`) and request agent (`applovin_dv360`).
 
